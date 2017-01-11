@@ -307,6 +307,9 @@ final class ORSet[A] private[akka] (
     }
   }
 
+  override def usingNodes: Set[UniqueAddress] =
+    vvector.usingNodes
+
   override def needPruningFrom(removedNode: UniqueAddress): Boolean =
     vvector.needPruningFrom(removedNode)
 

@@ -123,6 +123,9 @@ final class PNCounterMap[A] private[akka] (
   override def merge(that: PNCounterMap[A]): PNCounterMap[A] =
     new PNCounterMap(underlying.merge(that.underlying))
 
+  override def usingNodes: Set[UniqueAddress] =
+    underlying.usingNodes
+
   override def needPruningFrom(removedNode: UniqueAddress): Boolean =
     underlying.needPruningFrom(removedNode)
 

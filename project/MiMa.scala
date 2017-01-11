@@ -156,10 +156,16 @@ object MiMa extends AutoPlugin {
       ProblemFilters.exclude[MissingClassProblem]("akka.cluster.protobuf.msg.ClusterMessages$NodeMetrics$Metric$Builder"),
       ProblemFilters.exclude[MissingClassProblem]("akka.cluster.protobuf.msg.ClusterMessages$NodeMetrics$Number$Builder"),
         
+      // #21647 pruning
+      FilterAnyProblemStartingWith("akka.cluster.ddata.PruningState"),
+      ProblemFilters.exclude[ReversedMissingMethodProblem]("akka.cluster.ddata.RemovedNodePruning.usingNodes"),
+      FilterAnyProblemStartingWith("akka.cluster.ddata.Replicator"),
+      FilterAnyProblemStartingWith("akka.cluster.ddata.protobuf.msg"),
+
       // #21537 coordinated shutdown
       ProblemFilters.exclude[DirectMissingMethodProblem]("akka.cluster.ClusterCoreDaemon.removed"),
       ProblemFilters.exclude[DirectMissingMethodProblem]("akka.cluster.Gossip.convergence"),  
-        
+
       // #21423 removal of deprecated stages (in 2.5.x)
       ProblemFilters.exclude[DirectMissingMethodProblem]("akka.stream.javadsl.Source.transform"),
       ProblemFilters.exclude[DirectMissingMethodProblem]("akka.stream.javadsl.SubSource.transform"),
